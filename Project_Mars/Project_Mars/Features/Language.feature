@@ -4,17 +4,19 @@ Feature:Language
 Background: 
 	Given User logs-in to Mars portal 
 
-   
+
 
 Scenario Outline: 1. Add a new Language Record
 	When User added a new language record <LanguageName> <LanguageLevel>
 	Then Language record should be added successfully <LanguageName>
 
   Examples:   
-	| LanguageName    | LanguageLevel       | 
-	| 'English'       |     'Fluent'        | 
-	| 'Hindi'         | 'Native/Bilingual'  |
-	| 'Spanish'       |  'Conversational'   | 
+	| LanguageName | LanguageLevel      |
+	| 'English'    | 'Fluent'           |
+	| 'Hindi'      | 'Native/Bilingual' |
+	| 'Spanish'    | 'Conversational'   |
+	| 'Tamil'      | 'Basic'            |
+	| 'Gujarati'   | 'Fluent'           |
 
 Scenario Outline: 2. Edit an existing Language Record
 	When User edits an existing language record <OldName> <OldLevel> <NewName> <NewLevel>
@@ -32,6 +34,10 @@ Scenario Outline: 3. Delete an existing Language Record
 	| LanguageName |
 	| 'Arabic'     |
 	| 'Sindhi'     |
+
+#Scenario: 4. Check for maximum added language records
+# When User is trying to add more than four languages
+# Then User is not allowed to add more than four languages
 	
 
 

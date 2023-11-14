@@ -54,7 +54,20 @@ namespace Project_Mars.StepDefinitions
             LanguageTabobj.AssertDeletedlanguage(driver, LanguageName);
         }
 
-       
+        //[When(@"User is trying to add more than four languages")]
+        //public void WhenUserIsTryingToAddMoreThanFourLanguages()
+        //{
+        //    LanguageTabobj.MaximumLanguageAdded(driver);
+        //}
+
+        //[Then(@"User is not allowed to add more than four languages")]
+        //public void ThenUserIsNotAllowedToAddMoreThanFourLanguages()
+        //{
+        //    LanguageTabobj.MaximumLanguageAdded(driver);
+        //}
+
+
+
 
     }
 }
