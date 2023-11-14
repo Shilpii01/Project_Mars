@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace SpecFlow_Mars.Features
+namespace Project_Mars.Features
 {
     using TechTalk.SpecFlow;
     using System;

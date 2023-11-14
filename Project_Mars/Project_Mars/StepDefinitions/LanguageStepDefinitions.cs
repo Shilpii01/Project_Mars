@@ -1,8 +1,8 @@
-using SpecFlow_Mars.Pages;
-using SpecFlow_Mars.Utilities;
+using Project_Mars.Pages;
+using Project_Mars.Utilities;
 
 
-namespace SpecFlow_Mars.StepDefinitions
+namespace Project_Mars.StepDefinitions
 {
     [Binding]
     public class LanguageStepDefinitions : CommonDriver
@@ -10,8 +10,6 @@ namespace SpecFlow_Mars.StepDefinitions
         LoginPage LoginPageobj = new LoginPage();
         HomePage HomePageobj = new HomePage();
         LanguageTab LanguageTabobj = new LanguageTab();
-
-
 
         [Given(@"User logs-in to Mars portal")]
         public void GivenUserLogs_InToMarsPortal()
