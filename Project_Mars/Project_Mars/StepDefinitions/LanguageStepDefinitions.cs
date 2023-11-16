@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using Project_Mars.Pages;
 using Project_Mars.Utilities;
 
@@ -5,6 +6,7 @@ using Project_Mars.Utilities;
 namespace Project_Mars.StepDefinitions
 {
     [Binding]
+    [Parallelizable]
     public class LanguageStepDefinitions : CommonDriver
     {
         LoginPage LoginPageobj = new LoginPage();

@@ -24,7 +24,7 @@ namespace Project_Mars.Utilities
         [OneTimeTearDown]
         public void TearDown()
         {
-            driver.Close();
+            driver.Quit();
         }
 
     }

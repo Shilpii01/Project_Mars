@@ -52,6 +52,7 @@ namespace Project_Mars.Pages
                 }
                 IWebElement addLanguageButton = driver.FindElement(By.XPath("//input [@type='button'][@value='Add']"));
                 addLanguageButton.Click();
+                Thread.Sleep(2000);
             }
             else
             {
@@ -64,11 +65,11 @@ namespace Project_Mars.Pages
         public void AssertAddedLanguageRecord(IWebDriver driver, String LanguageName)
         {
             driver.Navigate().Refresh();
-            Thread.Sleep(4000);
-            Wait.WaitToBeVisible(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[1] ", 3);
-            IWebElement lastLanguageRecord = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[1]"));
-            Assert.That(lastLanguageRecord.Text == LanguageName, "Language record has not added successfully");
             Thread.Sleep(2000);
+            Wait.WaitToBeVisible(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[1] ", 3);
+            IWebElement AddedLanguageRecord = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[1]"));
+            Assert.That(AddedLanguageRecord.Text == LanguageName, "Language record has not added successfully");
+            Thread.Sleep(1000);
         }
 
         public void EditLanguagerecord(IWebDriver driver, String OldName, string OldLevel, string NewName, string NewLevel)
@@ -141,15 +142,15 @@ namespace Project_Mars.Pages
             int i;
             for (i = 1; i <= totalrows; i++)
             {
-                IWebElement selectLanguage = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[" + i + "]/tr/td[1]"));
-                IWebElement selectLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[" + i + "]/tr/td[2]"));
-                if ((selectLanguage.Text.Equals(NewName)) && (selectLevel.Text.Equals(NewLevel)))
+                IWebElement UpdatedLanguage = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[" + i + "]/tr/td[1]"));
+                IWebElement UpdatedLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[" + i + "]/tr/td[2]"));
+                if ((UpdatedLanguage.Text.Equals(NewName)) && (UpdatedLevel.Text.Equals(NewLevel)))
                 {
-                    Assert.That((selectLanguage.Text.Equals(NewName)) && (selectLevel.Text.Equals(NewLevel)), "Language record is not Updated");
+                    Assert.That((UpdatedLanguage.Text.Equals(NewName)) && (UpdatedLevel.Text.Equals(NewLevel)), "Language record is not Updated");
                     break;
                 }
             }
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
 
         }
 
@@ -171,7 +172,7 @@ namespace Project_Mars.Pages
 
                 }
             }
-            Thread.Sleep(3000);
+            Thread.Sleep(2000);
         }
 
         public void AssertDeletedlanguage(IWebDriver driver, string LanguageName)
@@ -181,34 +182,19 @@ namespace Project_Mars.Pages
             int i;
             for (i = 1; i <= rowCount; i++)
             {
-                IWebElement LanguageToDelete = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[" + i + "]/tr/td[1]"));
+                IWebElement DeletedLanguage = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[" + i + "]/tr/td[1]"));
                 //IWebElement selectLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[" + i + "]/tr/td[2]"));
-                if ((LanguageToDelete.Text.Equals(LanguageName)))
+                if ((DeletedLanguage.Text.Equals(LanguageName)))
                 {
-                    Assert.That(LanguageToDelete.Text != LanguageName, "Language record is not deleted");
+                    Assert.That(DeletedLanguage.Text != LanguageName, "Language record is not deleted");
 
                     break;
                 }
             }
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
 
         }
-
-    //    public void MaximumLanguageAdded(IWebDriver driver) 
-    //    {
-    //        int totalrows = driver.FindElements(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table//tbody")).Count;
-    //        Console.WriteLine(totalrows);
-
-    //        if (totalrows <= 4)
-    //        {
-    //            Assert.Pass("Maximum Languages added");
-                
-    //        }
-    //        else
-    //        {
-    //            Assert.Fail("User can add more languages");
-    //        }
-    //    }
+   
     }
 }
 
