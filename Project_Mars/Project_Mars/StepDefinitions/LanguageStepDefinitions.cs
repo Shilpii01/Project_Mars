@@ -1,29 +1,38 @@
 using NUnit.Framework;
+using OpenQA.Selenium;
 using Project_Mars.Pages;
 using Project_Mars.Utilities;
+using System;
 
 
 namespace Project_Mars.StepDefinitions
 {
     [Binding]
     [Parallelizable]
-    public class LanguageStepDefinitions : CommonDriver
+    public class LanguageStepDefinitions 
     {
         LoginPage LoginPageobj = new LoginPage();
         HomePage HomePageobj = new HomePage();
         LanguageTab LanguageTabobj = new LanguageTab();
 
+        private IWebDriver driver;
+
+        public LanguageStepDefinitions(IWebDriver driver)
+        {
+            this.driver = driver;
+        }
+
         [Given(@"User logs-in to Mars portal")]
         public void GivenUserLogs_InToMarsPortal()
         {
-            LoginPageobj.LogInActions();
-            HomePageobj.SelectLanguageTab();
+            LoginPageobj.LogInActions(driver);
+            HomePageobj.SelectLanguageTab(driver);
         }
 
         [When(@"User added a new language record '([^']*)' '([^']*)'")]
         public void WhenUserAddedANewLanguageRecord(string LanguageName, string LanguageLevel)
         {
-            LanguageTabobj.CreateLanguageRecord(driver, LanguageName, LanguageLevel);
+            LanguageTabobj.CreateLanguageRecord( driver, LanguageName, LanguageLevel);
         }
 
         [Then(@"Language record should be added successfully '([^']*)'")]
@@ -56,17 +65,34 @@ namespace Project_Mars.StepDefinitions
             LanguageTabobj.AssertDeletedlanguage(driver, LanguageName);
         }
 
-        //[When(@"User is trying to add more than four languages")]
-        //public void WhenUserIsTryingToAddMoreThanFourLanguages()
-        //{
-        //    LanguageTabobj.MaximumLanguageAdded(driver);
-        //}
+        [When(@"User added a new language record with invalid data '([^']*)' '([^']*)'")]
+        public void WhenUserAddedANewLanguageRecordWithInvalidData(string LanguageName, string LanguageLevel)
+        {
+            LanguageTabobj.CreateLanguageRecord(driver, LanguageName, LanguageLevel);   
+        }
 
-        //[Then(@"User is not allowed to add more than four languages")]
-        //public void ThenUserIsNotAllowedToAddMoreThanFourLanguages()
-        //{
-        //    LanguageTabobj.MaximumLanguageAdded(driver);
-        //}
+        [Then(@"User should get an error message '([^']*)' '([^']*)'")]
+        public void ThenUserShouldGetAnErrorMessage(string NewName, string NewLevel)
+        {
+            LanguageTabobj.duplicaterecord(driver, NewName, NewLevel);
+        }
+
+
+
+        [When(@"User is trying to add more than four language records '([^']*)' '([^']*)'")]
+        public void WhenUserIsTryingToAddMoreThanFourLanguageRecords(string LanguageName, string LanguageLevel)
+        {
+            LanguageTabobj.CreateLanguageRecord(driver, LanguageName, LanguageLevel);
+        }
+
+
+        [Then(@"Add new language button is unavailable")]
+        public void ThenAddNewLanguageButtonIsUnavailable()
+        {
+            LanguageTabobj.MaximumLanguagesAdded(driver);
+        }
+
+        
 
 
 

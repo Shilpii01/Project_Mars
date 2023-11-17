@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using static Project_Mars.Utilities.CommonDriver;
+//using static Project_Mars.Utilities.CommonDriver;
 
 
 namespace Project_Mars.Pages
@@ -7,7 +7,7 @@ namespace Project_Mars.Pages
     public class HomePage
     {
         
-        public void SelectLanguageTab()
+        public void SelectLanguageTab(IWebDriver driver)
         {
             Thread.Sleep(2000);
 
@@ -17,7 +17,7 @@ namespace Project_Mars.Pages
 
         }
 
-        public void SelectSkillTab()
+        public void SelectSkillTab(IWebDriver driver)
         {
             Thread.Sleep(2000);
             //Wait.waitToBeVisible(driver, "XPath", "//a[contains(text(),'Skills')]", 2);
