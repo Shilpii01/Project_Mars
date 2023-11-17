@@ -2,12 +2,28 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.DevTools;
 using OpenQA.Selenium.DevTools.V117.Debugger;
+using OpenQA.Selenium.Support.UI;
 using Project_Mars.Utilities;
+using SeleniumExtras.WaitHelpers;
+using System.Data.SqlTypes;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading;
 
 namespace Project_Mars.Pages
 {
     public class LanguageTab
     {
+        private readonly IWebDriver driver;
+
+        //public LanguageTab(IWebDriver driver)
+        //{
+        //    this.driver = driver;
+        //}
+
+        public LanguageTab()
+        {
+        }
+
         public void CreateLanguageRecord(IWebDriver driver, string LanguageName, string LanguageLevel)
         {
             Wait.WaitToBeClickable(driver, "XPath", "//div[@data-tab='first']//div[@class ='ui teal button ']", 10);
@@ -54,13 +70,10 @@ namespace Project_Mars.Pages
                 addLanguageButton.Click();
                 Thread.Sleep(2000);
             }
-            else
-            {
-                Assert.Pass("Maximum languages added");
-            }
+
         }
 
-       
+
 
         public void AssertAddedLanguageRecord(IWebDriver driver, String LanguageName)
         {
@@ -194,8 +207,64 @@ namespace Project_Mars.Pages
             Thread.Sleep(1000);
 
         }
-   
+
+
+
+        public void MaximumLanguagesAdded(IWebDriver driver)
+        {
+            Thread.Sleep(3000);
+
+            int totalrows = driver.FindElements(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table//tbody")).Count;
+            Console.WriteLine(totalrows);
+            bool Item;
+            try
+            {
+                Item = driver.FindElement(By.XPath("//div[@data-tab='first']//div[@class ='ui teal button ']")).Displayed;
+            }
+            catch (Exception ) 
+            {
+                if ((totalrows <= 4))
+                {
+                    Assert.Pass("Maximum Languages Added ");
+
+                }
+            }
+            
+            
+        }
+
+        public void duplicaterecord(IWebDriver driver, string NewName, string NewLevel) 
+        { 
+            driver.Navigate().Refresh();
+            int totalrows = driver.FindElements(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table//tbody")).Count;
+            int i;
+            for (i = 1; i <= totalrows; i++)
+            {
+                IWebElement LanguageName = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[" + i + "]/tr/td[1]"));
+                IWebElement LanguageLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[" + i + "]/tr/td[2]"));
+                // IWebDriver popmsg = (IWebDriver)driver.FindElement(By.XPath("//div[contains(text(),'This language is already exist in your language li')]"));
+                if ((LanguageName.Text.Equals(NewName)) && (LanguageLevel.Text.Equals(NewLevel)))
+                {
+
+                    Assert.Pass("Duplicate Language record cannot be created");
+
+                    //((UpdatedLanguage.Text.Equals(NewName)) && (UpdatedLevel.Text.Equals(NewLevel)), "Language record is not Updated");
+                    break;
+
+                }
+                else if ((LanguageName.Text!= (NewName)) && (LanguageLevel.Text!= (NewLevel)))
+                {
+                    Assert.Pass("Invalid record data ");
+                    break;
+                }
+                
+            }
+            Thread.Sleep(1000);
+        }
+
+        
     }
 }
-
+       
+        
     

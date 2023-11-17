@@ -4,28 +4,28 @@ using OpenQA.Selenium.Chrome;
 
 namespace Project_Mars.Utilities
 {
-    [TestFixture]
-    [Binding]
-    public class CommonDriver
-    {
+//    [TestFixture]
+//    [Binding]
+//    public class CommonDriver
+//    {
        
-        public static IWebDriver driver;
+//        public static IWebDriver driver;
 
        
 
-        [OneTimeSetUp]
-        public void SetUp()
-        {
-            driver = new ChromeDriver();
-        }
+//        [OneTimeSetUp]
+//        public void SetUp()
+//        {
+//            driver = new ChromeDriver();
+//        }
 
         
 
-        [OneTimeTearDown]
-        public void TearDown()
-        {
-            driver.Quit();
-        }
+//        [OneTimeTearDown]
+//        public void TearDown()
+//        {
+//            driver.Quit();
+//        }
 
-    }
+//    }
 }

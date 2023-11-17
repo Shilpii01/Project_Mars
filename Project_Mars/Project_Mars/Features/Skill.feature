@@ -7,7 +7,7 @@ Background:
 
 
 
-Scenario Outline: 1. Add a new Skill Record
+Scenario Outline: 1. Add a new Skill Record with valid data
 	When User added a new skill record <SkillName> <SkillLevel>
 	Then Skill record should be added successfully <SkillName>
 
@@ -35,3 +35,16 @@ Scenario Outline: 3. Delete an existing Skill Record
 	| SkillName           |
 	| 'Cybersecurity'     |
 	| 'Linux'             |
+
+Scenario Outline: 4. Add a new Skill Record with invalid data
+	When User added a new skill record with invalid data <SkillName> <SkillLevel>
+	Then Skill record not be created  <SkillName> <SkillLevel>
+
+  Examples:   
+	| SkillName                                                                                                                                                | SkillLevel           |
+	| 'DJ'                                                                                                                                                | 'Beginner' |
+	| 'DJ'                                                                                                                                                | 'Beginner' |
+	| ''                                                                                                                                                     | 'Expert'           |
+	| '*******'                                                                                                                                              | ''                 |
+	| ''                                                                                                                                                     | 'Intermediate'            |
+	|'123asdfghjklqsssss1234asdfghwertysssssssssssswertyuiopasdfghjklzxcvbnmqwertyuio1234567890asdfghjkl12345678fghjzxcvbnmasdfghjkpasdfghjklzxcvbnmqwe1234567890qwertyu1111111111ssssssssssssssssssiopasdfghjklzxcvbn' | 'Expert'            |

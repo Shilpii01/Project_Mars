@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using OpenQA.Selenium;
 using Project_Mars.Pages;
 using Project_Mars.Utilities;
 
@@ -6,16 +7,23 @@ namespace Project_Mars.StepDefinitions
 {
     [Binding]
     [Parallelizable]
-    public class SkillStepDefinitions: CommonDriver
+    public class SkillStepDefinitions
     {
+
         LoginPage LoginPageobj = new LoginPage();
         HomePage HomePageobj = new HomePage();
         SkillTab SkillTabobj = new SkillTab();
+        private IWebDriver driver;
+
+        public SkillStepDefinitions(IWebDriver driver)
+        {
+           this.driver = driver;
+        }
 
         [Given(@"User navigates to skill tab")]
         public void GivenUserNavigatesToSkillTab()
         {
-            HomePageobj.SelectSkillTab();
+            HomePageobj.SelectSkillTab(driver);
         }
 
 
@@ -55,5 +63,18 @@ namespace Project_Mars.StepDefinitions
         {
             SkillTabobj.AssertDeletedSkill(driver, SkillName);
         }
+
+        [When(@"User added a new skill record with invalid data '([^']*)' '([^']*)'")]
+        public void WhenUserAddedANewSkillRecordWithInvalidData(string SkillName, string SkillLevel)
+        {
+            SkillTabobj.CreateSkillRecord(driver, SkillName, SkillLevel);
+        }
+
+        [Then(@"Skill record not be created  '([^']*)' '([^']*)'")]
+        public void ThenSkillRecordNotBeCreated(string SkillName, string SkillLevel)
+        {
+            SkillTabobj.invalidSkillRecord(driver, SkillName, SkillLevel);
+        }
+
     }
 }

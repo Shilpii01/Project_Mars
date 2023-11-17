@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using static Project_Mars.Utilities.CommonDriver;
+//using static Project_Mars.Utilities.CommonDriver;
 
 
 namespace Project_Mars.Pages
@@ -9,7 +9,7 @@ namespace Project_Mars.Pages
     public class LoginPage
     {
 
-        public void SignInActions()
+        public void SignInActions(IWebDriver driver)
         {
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("http://localhost:5000/Home");
@@ -19,10 +19,10 @@ namespace Project_Mars.Pages
             SignInButton.Click();
 
         }
-        public void LogInActions()
+        public void LogInActions(IWebDriver driver)
         {
-            driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
+            //driver = new ChromeDriver();
+            //driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("http://localhost:5000/");
 
             try

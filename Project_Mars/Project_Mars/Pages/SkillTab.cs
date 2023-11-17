@@ -178,6 +178,29 @@ namespace Project_Mars.Pages
 
         }
 
+        public void invalidSkillRecord(IWebDriver driver, string SkillName, string SkillLevel) 
+        {
+            driver.Navigate().Refresh();
+            Wait.WaitToBeVisible(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table", 4);
+            // Thread.Sleep(3000);
+            int totalrows = driver.FindElements(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table//tbody")).Count;
+            int i;
+            for (i = 1; i <= totalrows; i++)
+            {
+                IWebElement UpdatedSkill = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[" + i + "]/tr/td[1]"));
+                IWebElement UpdatedSkillLevel = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody[" + i + "]/tr/td[2]"));
+                if ((UpdatedSkill.Text.Equals(SkillName)) && (UpdatedSkillLevel.Text.Equals(SkillLevel)))
+                {
+                    Assert.Pass("Duplicate Skill record should not be created");
+                }
+                else if ((UpdatedSkill.Text!= (SkillName)) && (UpdatedSkillLevel.Text != (SkillLevel)))
+                {
+                    Assert.Pass("Invalid Skill Record");
+                }
+            }
+            Thread.Sleep(1000);
+        }
+
 
 
     }

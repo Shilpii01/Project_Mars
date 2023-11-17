@@ -86,19 +86,19 @@ namespace Project_Mars.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("1. Add a new Skill Record")]
+        [NUnit.Framework.DescriptionAttribute("1. Add a new Skill Record with valid data")]
         [NUnit.Framework.TestCaseAttribute("\'Java\'", "\'Beginner\'", null)]
         [NUnit.Framework.TestCaseAttribute("\'Python\'", "\'Intermediate\'", null)]
         [NUnit.Framework.TestCaseAttribute("\'C#\'", "\'Expert\'", null)]
         [NUnit.Framework.TestCaseAttribute("\'Cybersecurity\'", "\'Beginner\'", null)]
         [NUnit.Framework.TestCaseAttribute("\'QA\'", "\'Expert\'", null)]
-        public void _1_AddANewSkillRecord(string skillName, string skillLevel, string[] exampleTags)
+        public void _1_AddANewSkillRecordWithValidData(string skillName, string skillLevel, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("SkillName", skillName);
             argumentsOfScenario.Add("SkillLevel", skillLevel);
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("1. Add a new Skill Record", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("1. Add a new Skill Record with valid data", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -186,6 +186,46 @@ this.FeatureBackground();
 #line hidden
 #line 33
  testRunner.Then(string.Format("Skill record should be deleted successfully {0}", skillName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("4. Add a new Skill Record with invalid data")]
+        [NUnit.Framework.TestCaseAttribute("\'DJ\'", "\'Beginner\'", null)]
+        [NUnit.Framework.TestCaseAttribute("\'DJ\'", "\'Beginner\'", null)]
+        [NUnit.Framework.TestCaseAttribute("\'\'", "\'Expert\'", null)]
+        [NUnit.Framework.TestCaseAttribute("\'*******\'", "\'\'", null)]
+        [NUnit.Framework.TestCaseAttribute("\'\'", "\'Intermediate\'", null)]
+        [NUnit.Framework.TestCaseAttribute("\'123asdfghjklqsssss1234asdfghwertysssssssssssswertyuiopasdfghjklzxcvbnmqwertyuio1" +
+            "234567890asdfghjkl12345678fghjzxcvbnmasdfghjkpasdfghjklzxcvbnmqwe1234567890qwert" +
+            "yu1111111111ssssssssssssssssssiopasdfghjklzxcvbn\'", "\'Expert\'", null)]
+        public void _4_AddANewSkillRecordWithInvalidData(string skillName, string skillLevel, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("SkillName", skillName);
+            argumentsOfScenario.Add("SkillLevel", skillLevel);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("4. Add a new Skill Record with invalid data", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 39
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 4
+this.FeatureBackground();
+#line hidden
+#line 40
+ testRunner.When(string.Format("User added a new skill record with invalid data {0} {1}", skillName, skillLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 41
+ testRunner.Then(string.Format("Skill record not be created  {0} {1}", skillName, skillLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
