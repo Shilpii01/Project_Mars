@@ -85,9 +85,6 @@ namespace Project_Mars.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("1. Add a new Language Record with valid data")]
         [NUnit.Framework.TestCaseAttribute("\'English\'", "\'Fluent\'", null)]
-        [NUnit.Framework.TestCaseAttribute("\'Hindi\'", "\'Native/Bilingual\'", null)]
-        [NUnit.Framework.TestCaseAttribute("\'Spanish\'", "\'Conversational\'", null)]
-        [NUnit.Framework.TestCaseAttribute("\'Tamil\'", "\'Basic\'", null)]
         public void _1_AddANewLanguageRecordWithValidData(string languageName, string languageLevel, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -95,7 +92,7 @@ namespace Project_Mars.Features
             argumentsOfScenario.Add("LanguageName", languageName);
             argumentsOfScenario.Add("LanguageLevel", languageLevel);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("1. Add a new Language Record with valid data", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 9
+#line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -108,10 +105,10 @@ this.ScenarioInitialize(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line hidden
-#line 10
+#line 11
  testRunner.When(string.Format("User added a new language record {0} {1}", languageName, languageLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 11
+#line 12
  testRunner.Then(string.Format("Language record should be added successfully {0}", languageName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -120,18 +117,17 @@ this.FeatureBackground();
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("2. Edit an existing Language Record")]
-        [NUnit.Framework.TestCaseAttribute("\'English\'", "\'Fluent\'", "\'Arabic\'", "\'Basic\'", null)]
-        [NUnit.Framework.TestCaseAttribute("\'Spanish\'", "\'Conversational\'", "\'Sindhi\'", "\'Fluent\'", null)]
-        public void _2_EditAnExistingLanguageRecord(string oldName, string oldLevel, string newName, string newLevel, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("\'English\'", "\'Fluent\'", "\'Arabic\'", "\'Fluent\'", null)]
+        public void _2_EditAnExistingLanguageRecord(string languageName, string languageLevel, string newName, string newLevel, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("OldName", oldName);
-            argumentsOfScenario.Add("OldLevel", oldLevel);
+            argumentsOfScenario.Add("LanguageName", languageName);
+            argumentsOfScenario.Add("LanguageLevel", languageLevel);
             argumentsOfScenario.Add("NewName", newName);
             argumentsOfScenario.Add("NewLevel", newLevel);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("2. Edit an existing Language Record", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 21
+#line 23
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -144,11 +140,14 @@ this.ScenarioInitialize(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line hidden
-#line 22
- testRunner.When(string.Format("User edits an existing language record {0} {1} {2} {3}", oldName, oldLevel, newName, newLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 24
+ testRunner.When(string.Format("User added a new language record {0} {1}", languageName, languageLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 23
- testRunner.Then(string.Format("Language record should be updated successfully {0} {1}", newName, newLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 25
+ testRunner.Then(string.Format("User edits an existing language record {0} {1}", newName, newLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 26
+ testRunner.Then(string.Format("Language record should be updated successfully {0}", newName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -156,15 +155,15 @@ this.FeatureBackground();
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("3. Delete an existing Language Record")]
-        [NUnit.Framework.TestCaseAttribute("\'Arabic\'", null)]
-        [NUnit.Framework.TestCaseAttribute("\'Sindhi\'", null)]
-        public void _3_DeleteAnExistingLanguageRecord(string languageName, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("\'Arabic\'", "\'Fluent\'", null)]
+        public void _3_DeleteAnExistingLanguageRecord(string languageName, string languageLevel, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("LanguageName", languageName);
+            argumentsOfScenario.Add("LanguageLevel", languageLevel);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("3. Delete an existing Language Record", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 30
+#line 33
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -177,10 +176,10 @@ this.ScenarioInitialize(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line hidden
-#line 31
- testRunner.When(string.Format("User deletes an existing language record {0}", languageName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 35
+ testRunner.Then("User deletes an existing language record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 32
+#line 36
  testRunner.Then(string.Format("Language record should be deleted successfully {0}", languageName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -189,14 +188,8 @@ this.FeatureBackground();
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("4. Add a new Language Record with invalid data")]
-        [NUnit.Framework.TestCaseAttribute("\'Hindi\'", "\'Native/Bilingual\'", null)]
-        [NUnit.Framework.TestCaseAttribute("\'Hindi\'", "\'Native/Bilingual\'", null)]
         [NUnit.Framework.TestCaseAttribute("\'\'", "\'Fluent\'", null)]
         [NUnit.Framework.TestCaseAttribute("\'*******\'", "\'\'", null)]
-        [NUnit.Framework.TestCaseAttribute("\'\'", "\'Basic\'", null)]
-        [NUnit.Framework.TestCaseAttribute("\'123asdfghjklqsssss1234asdfghwertysssssssssssswertyuiopasdfghjklzxcvbnmqwertyuio1" +
-            "234567890asdfghjkl12345678fghjzxcvbnmasdfghjkpasdfghjklzxcvbnmqwe1234567890qwert" +
-            "yu1111111111ssssssssssssssssssiopasdfghjklzxcvbn\'", "\'Basic\'", null)]
         public void _4_AddANewLanguageRecordWithInvalidData(string newName, string newLevel, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -204,7 +197,7 @@ this.FeatureBackground();
             argumentsOfScenario.Add("NewName", newName);
             argumentsOfScenario.Add("NewLevel", newLevel);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("4. Add a new Language Record with invalid data", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 38
+#line 42
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -217,10 +210,10 @@ this.ScenarioInitialize(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line hidden
-#line 39
+#line 43
  testRunner.When(string.Format("User added a new language record with invalid data {0} {1}", newName, newLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 40
+#line 44
  testRunner.Then(string.Format("User should get an error message {0} {1}", newName, newLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

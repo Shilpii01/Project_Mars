@@ -7,73 +7,79 @@ namespace Project_Mars.StepDefinitions
 {
     [Binding]
     [Parallelizable]
-    public class SkillStepDefinitions
+    public class SkillStepDefinitions:CommonDriver
     {
 
-        LoginPage LoginPageobj = new LoginPage();
-        HomePage HomePageobj = new HomePage();
-        SkillTab SkillTabobj = new SkillTab();
-        private IWebDriver driver;
+        LoginPage LoginPageobj;
+        HomePage HomePageobj;
+        SkillTab SkillTabobj;
+     
 
-        public SkillStepDefinitions(IWebDriver driver)
+        public SkillStepDefinitions()
         {
-           this.driver = driver;
+           LoginPageobj = new LoginPage(); 
+            HomePageobj = new HomePage();
+            SkillTabobj = new SkillTab();
         }
 
         [Given(@"User navigates to skill tab")]
         public void GivenUserNavigatesToSkillTab()
         {
-            HomePageobj.SelectSkillTab(driver);
+            HomePageobj.SelectSkillTab();
         }
 
 
         [When(@"User added a new skill record '([^']*)' '([^']*)'")]
         public void WhenUserAddedANewSkillRecord(string SkillName, string SkillLevel)
         {
-            
-            SkillTabobj.CreateSkillRecord(driver, SkillName, SkillLevel);
+            SkillTabobj.ClearExistingSkill();
+            SkillTabobj.CreateSkillRecord(SkillName, SkillLevel);
         }
 
         [Then(@"Skill record should be added successfully '([^']*)'")]
         public void ThenSkillRecordShouldBeAddedSuccessfully(string SkillName)
         {
-            SkillTabobj.AssertAddedSkillRecord(driver, SkillName);
+            string newSkill = SkillTabobj.AddedSkillRecord();
+            Assert.That(SkillName == newSkill, "Skill Record has not been created successfully");
         }
 
-        [When(@"User edits an existing skill record '([^']*)' '([^']*)' '([^']*)' '([^']*)'")]
-        public void WhenUserEditsAnExistingSkillRecord(string OldSkill, string OldSkillLevel, string NewSkill, string NewSkillLevel)
+        [Then(@"User edits an existing skill record '([^']*)' '([^']*)'")]
+        public void ThenUserEditsAnExistingSkillRecord(string NewSkill, string NewSkillLevel)
         {
-            SkillTabobj.EditSkillrecord(driver, OldSkill, OldSkillLevel, NewSkill, NewSkillLevel);
+            SkillTabobj.EditSkillrecord(NewSkill, NewSkillLevel);
         }
 
-        [Then(@"Skill record should be updated successfully '([^']*)' '([^']*)'")]
-        public void ThenSkillRecordShouldBeUpdatedSuccessfully(string NewSkill, string NewSkillLevel)
+        [Then(@"Skill record should be updated successfully '([^']*)'")]
+        public void ThenSkillRecordShouldBeUpdatedSuccessfully(string NewSkill)
         {
-            SkillTabobj.AssertUpdatedSkillRecord(driver, NewSkill, NewSkillLevel);
+            string Skill = SkillTabobj.AddedSkillRecord();
+            Assert.That(NewSkill == Skill, "Skill Record has not been updated successfully");
         }
 
-        [When(@"User deletes an existing skill record '([^']*)'")]
-        public void WhenUserDeletesAnExistingSkillRecord(string SkillName)
+        [Then(@"User deletes an existing skill record")]
+        public void ThenUserDeletesAnExistingSkillRecord()
         {
-            SkillTabobj.DeleteSkillRecord(driver, SkillName);
+            SkillTabobj.DeleteSkillRecord();
         }
-
+       
         [Then(@"Skill record should be deleted successfully '([^']*)'")]
         public void ThenSkillRecordShouldBeDeletedSuccessfully(string SkillName)
         {
-            SkillTabobj.AssertDeletedSkill(driver, SkillName);
+            string deletedSkillText = SkillTabobj.SkillPopUpMsg();
+            Assert.That(deletedSkillText == SkillName + "has been deleted from your skills", "Skill record has not been deleted");
         }
 
         [When(@"User added a new skill record with invalid data '([^']*)' '([^']*)'")]
         public void WhenUserAddedANewSkillRecordWithInvalidData(string SkillName, string SkillLevel)
         {
-            SkillTabobj.CreateSkillRecord(driver, SkillName, SkillLevel);
+            SkillTabobj.CreateSkillRecord(SkillName, SkillLevel);
         }
 
         [Then(@"Skill record not be created  '([^']*)' '([^']*)'")]
         public void ThenSkillRecordNotBeCreated(string SkillName, string SkillLevel)
         {
-            SkillTabobj.invalidSkillRecord(driver, SkillName, SkillLevel);
+            string InvalidData = SkillTabobj.SkillPopUpMsg();
+            Assert.That(InvalidData == "Please enter skill and experience level", "invalid data");
         }
 
     }
