@@ -1,44 +1,24 @@
-﻿using BoDi;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+﻿using Project_Mars.Utilities;
 using TechTalk.SpecFlow;
 
 namespace Project_Mars.Hooks
 {
     [Binding]
-    public sealed class Hooks
+    public sealed class Hooks:CommonDriver
     {
-        private readonly IObjectContainer _container;
-        public Hooks(IObjectContainer container)
-        { 
-            _container = container;
-        }
+        
 
-        [BeforeScenario("@tag1")]
+        [BeforeScenario]
         public void BeforeScenarioWithTag()
         {
-            
+            Initialize();
         }
 
-        [BeforeScenario(Order = 1)]
-        public void FirstBeforeScenario()
-        {
-            IWebDriver driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
-
-            _container.RegisterInstanceAs<IWebDriver>(driver);
-        }
-
+        
         [AfterScenario]
         public void AfterScenario()
         {
-          var driver =  _container.Resolve<IWebDriver>();
-
-            if (driver != null) 
-            {
-                driver.Quit();
-            }
-
+            Close();
         }
     }
 }

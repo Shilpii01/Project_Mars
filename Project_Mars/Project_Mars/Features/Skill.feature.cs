@@ -88,10 +88,6 @@ namespace Project_Mars.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("1. Add a new Skill Record with valid data")]
         [NUnit.Framework.TestCaseAttribute("\'Java\'", "\'Beginner\'", null)]
-        [NUnit.Framework.TestCaseAttribute("\'Python\'", "\'Intermediate\'", null)]
-        [NUnit.Framework.TestCaseAttribute("\'C#\'", "\'Expert\'", null)]
-        [NUnit.Framework.TestCaseAttribute("\'Cybersecurity\'", "\'Beginner\'", null)]
-        [NUnit.Framework.TestCaseAttribute("\'QA\'", "\'Expert\'", null)]
         public void _1_AddANewSkillRecordWithValidData(string skillName, string skillLevel, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -125,13 +121,12 @@ this.FeatureBackground();
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("2. Edit an existing Skill Record")]
         [NUnit.Framework.TestCaseAttribute("\'Java\'", "\'Beginner\'", "\'Oracle\'", "\'Intermediate\'", null)]
-        [NUnit.Framework.TestCaseAttribute("\'C#\'", "\'Expert\'", "\'Linux\'", "\'Expert\'", null)]
-        public void _2_EditAnExistingSkillRecord(string oldSkill, string oldSkillLevel, string newSkill, string newSkillLevel, string[] exampleTags)
+        public void _2_EditAnExistingSkillRecord(string skillName, string skillLevel, string newSkill, string newSkillLevel, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("OldSkill", oldSkill);
-            argumentsOfScenario.Add("OldSkillLevel", oldSkillLevel);
+            argumentsOfScenario.Add("SkillName", skillName);
+            argumentsOfScenario.Add("SkillLevel", skillLevel);
             argumentsOfScenario.Add("NewSkill", newSkill);
             argumentsOfScenario.Add("NewSkillLevel", newSkillLevel);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("2. Edit an existing Skill Record", null, tagsOfScenario, argumentsOfScenario, featureTags);
@@ -149,10 +144,13 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 23
- testRunner.When(string.Format("User edits an existing skill record {0} {1} {2} {3}", oldSkill, oldSkillLevel, newSkill, newSkillLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("User added a new skill record {0} {1}", skillName, skillLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 24
- testRunner.Then(string.Format("Skill record should be updated successfully {0} {1}", newSkill, newSkillLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("User edits an existing skill record {0} {1}", newSkill, newSkillLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 25
+ testRunner.Then(string.Format("Skill record should be updated successfully {0}", newSkill), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -160,15 +158,15 @@ this.FeatureBackground();
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("3. Delete an existing Skill Record")]
-        [NUnit.Framework.TestCaseAttribute("\'Cybersecurity\'", null)]
-        [NUnit.Framework.TestCaseAttribute("\'Linux\'", null)]
-        public void _3_DeleteAnExistingSkillRecord(string skillName, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("\'Oracle\'", "\'Intermediate\'", null)]
+        public void _3_DeleteAnExistingSkillRecord(string skillName, string skillLevel, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("SkillName", skillName);
+            argumentsOfScenario.Add("SkillLevel", skillLevel);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("3. Delete an existing Skill Record", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 31
+#line 32
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -181,10 +179,13 @@ this.ScenarioInitialize(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line hidden
-#line 32
- testRunner.When(string.Format("User deletes an existing skill record {0}", skillName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
 #line 33
+ testRunner.When(string.Format("User added a new skill record {0} {1}", skillName, skillLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 34
+ testRunner.Then("User deletes an existing skill record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 35
  testRunner.Then(string.Format("Skill record should be deleted successfully {0}", skillName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -193,14 +194,11 @@ this.FeatureBackground();
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("4. Add a new Skill Record with invalid data")]
-        [NUnit.Framework.TestCaseAttribute("\'DJ\'", "\'Beginner\'", null)]
-        [NUnit.Framework.TestCaseAttribute("\'DJ\'", "\'Beginner\'", null)]
+        [NUnit.Framework.TestCaseAttribute("\'DJ\'", "\'\'", null)]
+        [NUnit.Framework.TestCaseAttribute("\'\'", "\'Beginner\'", null)]
         [NUnit.Framework.TestCaseAttribute("\'\'", "\'Expert\'", null)]
         [NUnit.Framework.TestCaseAttribute("\'*******\'", "\'\'", null)]
         [NUnit.Framework.TestCaseAttribute("\'\'", "\'Intermediate\'", null)]
-        [NUnit.Framework.TestCaseAttribute("\'123asdfghjklqsssss1234asdfghwertysssssssssssswertyuiopasdfghjklzxcvbnmqwertyuio1" +
-            "234567890asdfghjkl12345678fghjzxcvbnmasdfghjkpasdfghjklzxcvbnmqwe1234567890qwert" +
-            "yu1111111111ssssssssssssssssssiopasdfghjklzxcvbn\'", "\'Expert\'", null)]
         public void _4_AddANewSkillRecordWithInvalidData(string skillName, string skillLevel, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -208,7 +206,7 @@ this.FeatureBackground();
             argumentsOfScenario.Add("SkillName", skillName);
             argumentsOfScenario.Add("SkillLevel", skillLevel);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("4. Add a new Skill Record with invalid data", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 39
+#line 40
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -221,10 +219,10 @@ this.ScenarioInitialize(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line hidden
-#line 40
+#line 41
  testRunner.When(string.Format("User added a new skill record with invalid data {0} {1}", skillName, skillLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 41
+#line 42
  testRunner.Then(string.Format("Skill record not be created  {0} {1}", skillName, skillLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

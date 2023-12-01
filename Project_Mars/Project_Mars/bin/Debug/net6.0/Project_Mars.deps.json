@@ -10,8 +10,9 @@
         "dependencies": {
           "FluentAssertions": "6.12.0",
           "Microsoft.NET.Test.Sdk": "17.8.0",
-          "NUnit": "3.14.0",
+          "NUnit": "4.0.0",
           "NUnit3TestAdapter": "4.5.0",
+          "Selenium.Support": "4.15.0",
           "Selenium.WebDriver": "4.15.0",
           "Selenium.WebDriver.ChromeDriver": "119.0.6045.10500",
           "SeleniumExtras.WaitHelpers": "1.0.2",
@@ -361,11 +362,6 @@
           }
         }
       },
-      "NETStandard.Library/2.0.0": {
-        "dependencies": {
-          "Microsoft.NETCore.Platforms": "2.0.0"
-        }
-      },
       "Newtonsoft.Json/13.0.1": {
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
@@ -382,14 +378,15 @@
           }
         }
       },
-      "NUnit/3.14.0": {
-        "dependencies": {
-          "NETStandard.Library": "2.0.0"
-        },
+      "NUnit/4.0.0": {
         "runtime": {
-          "lib/netstandard2.0/nunit.framework.dll": {
-            "assemblyVersion": "3.14.0.0",
-            "fileVersion": "3.14.0.0"
+          "lib/net6.0/nunit.framework.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          },
+          "lib/net6.0/nunit.framework.legacy.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
           }
         }
       },
@@ -436,6 +433,17 @@
       "runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {},
       "runtime.ubuntu.16.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {},
       "runtime.ubuntu.16.10-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.2": {},
+      "Selenium.Support/4.15.0": {
+        "dependencies": {
+          "Selenium.WebDriver": "4.15.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/WebDriver.Support.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
       "Selenium.WebDriver/4.15.0": {
         "dependencies": {
           "Newtonsoft.Json": "13.0.1",
@@ -487,7 +495,7 @@
       },
       "SpecFlow.NUnit/3.9.74": {
         "dependencies": {
-          "NUnit": "3.14.0",
+          "NUnit": "4.0.0",
           "SpecFlow": "3.9.74",
           "SpecFlow.Tools.MsBuild.Generation": "3.9.74"
         },
@@ -1140,13 +1148,6 @@
       "path": "microsoft.win32.systemevents/7.0.0",
       "hashPath": "microsoft.win32.systemevents.7.0.0.nupkg.sha512"
     },
-    "NETStandard.Library/2.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-7jnbRU+L08FXKMxqUflxEXtVymWvNOrS8yHgu9s6EM8Anr6T/wIX4nZ08j/u3Asz+tCufp3YVwFSEvFTPYmBPA==",
-      "path": "netstandard.library/2.0.0",
-      "hashPath": "netstandard.library.2.0.0.nupkg.sha512"
-    },
     "Newtonsoft.Json/13.0.1": {
       "type": "package",
       "serviceable": true,
@@ -1161,12 +1162,12 @@
       "path": "nuget.frameworks/6.5.0",
       "hashPath": "nuget.frameworks.6.5.0.nupkg.sha512"
     },
-    "NUnit/3.14.0": {
+    "NUnit/4.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-R7iPwD7kbOaP3o2zldWJbWeMQAvDKD0uld27QvA3PAALl1unl7x0v2J7eGiJOYjimV/BuGT4VJmr45RjS7z4LA==",
-      "path": "nunit/3.14.0",
-      "hashPath": "nunit.3.14.0.nupkg.sha512"
+      "sha512": "sha512-hvSDhron6affk3FwBPjEQSn3mnhYi4EZZUB74CRd+vkiSVhewpp4Z6pI2m4IQV7H1oiUlDz2PQXbuAYT6P0Ggg==",
+      "path": "nunit/4.0.0",
+      "hashPath": "nunit.4.0.0.nupkg.sha512"
     },
     "NUnit3TestAdapter/4.5.0": {
       "type": "package",
@@ -1279,6 +1280,13 @@
       "sha512": "sha512-leXiwfiIkW7Gmn7cgnNcdtNAU70SjmKW3jxGj1iKHOvdn0zRWsgv/l2OJUO5zdGdiv2VRFnAsxxhDgMzofPdWg==",
       "path": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.2",
       "hashPath": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.2.nupkg.sha512"
+    },
+    "Selenium.Support/4.15.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zqkSQYMS2JcAd+AKavADPoe/RyYjiklc/TRms/nzDH9Wo/OpYOqE7h9D8ggwXr4auErNvbAIqEGqIkAWElTkpg==",
+      "path": "selenium.support/4.15.0",
+      "hashPath": "selenium.support.4.15.0.nupkg.sha512"
     },
     "Selenium.WebDriver/4.15.0": {
       "type": "package",

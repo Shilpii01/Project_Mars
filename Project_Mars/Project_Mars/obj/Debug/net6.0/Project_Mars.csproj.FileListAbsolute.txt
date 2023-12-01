@@ -120,3 +120,5 @@ A:\Industry Connect\MVP Project\Project_Mars\Project_Mars\Project_Mars\obj\Debug
 A:\Industry Connect\MVP Project\Project_Mars\Project_Mars\Project_Mars\obj\Debug\net6.0\Project_Mars.pdb
 A:\Industry Connect\MVP Project\Project_Mars\Project_Mars\Project_Mars\obj\Debug\net6.0\Project_Mars.genruntimeconfig.cache
 A:\Industry Connect\MVP Project\Project_Mars\Project_Mars\Project_Mars\obj\Debug\net6.0\ref\Project_Mars.dll
+A:\Industry Connect\MVP Project\Project_Mars\Project_Mars\Project_Mars\bin\Debug\net6.0\nunit.framework.legacy.dll
+A:\Industry Connect\MVP Project\Project_Mars\Project_Mars\Project_Mars\bin\Debug\net6.0\WebDriver.Support.dll
