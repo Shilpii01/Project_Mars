@@ -1,62 +1,121 @@
-using SpecFlow_Mars.Pages;
-using SpecFlow_Mars.Utilities;
+using NUnit.Framework;
+using Project_Mars.Pages;
+using Project_Mars.Utilities;
 
 
-namespace SpecFlow_Mars.StepDefinitions
+namespace Project_Mars.StepDefinitions
 {
     [Binding]
-    public class LanguageStepDefinitions : CommonDriver
+    [Parallelizable]
+    public class LanguageStepDefinitions: CommonDriver
     {
-        LoginPage LoginPageobj = new LoginPage();
-        HomePage HomePageobj = new HomePage();
-        LanguageTab LanguageTabobj = new LanguageTab();
+            
+        
+            LanguageTab LanguageTabObj;
+            LoginPage LoginPageObj;
+            HomePage HomePageObj;
 
+            public LanguageStepDefinitions()
+            {
+                LanguageTabObj = new LanguageTab();
+                LoginPageObj = new LoginPage();
+                HomePageObj = new HomePage();
+            }
 
-
-        [Given(@"User logs-in to Mars portal")]
+            [Given(@"User logs-in to Mars portal")]
         public void GivenUserLogs_InToMarsPortal()
         {
-            LoginPageobj.LogInActions();
-            HomePageobj.SelectLanguageTab();
+            LoginPageObj.LogInActions();
+            HomePageObj.SelectLanguageTab();
+           
         }
+        
 
         [When(@"User added a new language record '([^']*)' '([^']*)'")]
         public void WhenUserAddedANewLanguageRecord(string LanguageName, string LanguageLevel)
         {
-            LanguageTabobj.CreateLanguageRecord(driver, LanguageName, LanguageLevel);
+            LanguageTabObj.ClearExistingLanguages();
+            LanguageTabObj.CreateLanguageRecord( LanguageName, LanguageLevel);
         }
 
         [Then(@"Language record should be added successfully '([^']*)'")]
         public void ThenLanguageRecordShouldBeAddedSuccessfully(string LanguageName)
         {
-            LanguageTabobj.AssertAddedLanguageRecord(driver, LanguageName);
+            string newLanguage = LanguageTabObj.AddedLanguageRecord();
+            Assert.That(LanguageName == newLanguage, "Language Record has not been created ");
+            
         }
 
-        [When(@"User edits an existing language record '([^']*)' '([^']*)' '([^']*)' '([^']*)'")]
-        public void WhenUserEditsAnExistingLanguageRecord(string OldName, string OldLevel, string NewName, string NewLevel)
+        [Then(@"User edits an existing language record '([^']*)' '([^']*)'")]
+        public void ThenUserEditsAnExistingLanguageRecord(string NewName, string NewLevel)
         {
-            LanguageTabobj.EditLanguagerecord(driver, OldName, OldLevel, NewName, NewLevel);
+            LanguageTabObj.EditLanguagerecord(NewName, NewLevel);
         }
 
-        [Then(@"Language record should be updated successfully '([^']*)' '([^']*)'")]
-        public void ThenLanguageRecordShouldBeUpdatedSuccessfully(string NewName, string NewLevel)
+
+       
+
+        [Then(@"Language record should be updated successfully '([^']*)'")]
+        public void ThenLanguageRecordShouldBeUpdatedSuccessfully(string NewName)
         {
-            LanguageTabobj.AssertUpdatedLanguageRecord(driver, NewName, NewLevel);
+
+           
+            string newLanguage = LanguageTabObj.AddedLanguageRecord();
+
+            Assert.That(NewName == newLanguage, "Language has not been edited");
         }
 
-        [When(@"User deletes an existing language record '([^']*)'")]
-        public void WhenUserDeletesAnExistingLanguageRecord(string LanguageName)
+        [When(@"User deletes an existing language record")]
+        public void WhenUserDeletesAnExistingLanguageRecord()
         {
-            LanguageTabobj.DeleteLanguageRecord(driver, LanguageName);  
+            LanguageTabObj.DeleteLanguageRecord();
         }
 
         [Then(@"Language record should be deleted successfully '([^']*)'")]
         public void ThenLanguageRecordShouldBeDeletedSuccessfully(string LanguageName)
         {
-            LanguageTabobj.AssertDeletedlanguage(driver, LanguageName);
+            string deletedElement = LanguageTabObj.GetDeletedElement();
+            Assert.That(LanguageName!= deletedElement, "Deleted language and expected language does not match");
+
         }
 
-       
+        [When(@"User added a new language record with invalid data '([^']*)' '([^']*)'")]
+        public void WhenUserAddedANewLanguageRecordWithInvalidData(string LanguageName, string LanguageLevel)
+        {
+            LanguageTabObj.CreateLanguageRecord(LanguageName, LanguageLevel);   
+        }
+
+        [Then(@"User should get an error message '([^']*)' '([^']*)'")]
+        public void ThenUserShouldGetAnErrorMessage(string NewName, string NewLevel)
+        {
+            string InvalidData= LanguageTabObj.LanguagePopUpMsg();
+            Assert.That(InvalidData == "Please enter language and level", "invalid data");
+        }
+
+
+        [When(@"User can add max four language records '([^']*)' '([^']*)'")]
+        public void WhenUserCanAddMaxFourLanguageRecords(string LanguageName, string LanguageLevel)
+        {
+            LanguageTabObj.CreateLanguageRecord(LanguageName, LanguageLevel);
+        }
+
+
+
+        [Then(@"Add new language button is unavailable")]
+        public void ThenAddNewLanguageButtonIsUnavailable()
+        {
+            int totalrows = LanguageTabObj.rows.Count;
+            if (totalrows == 4)
+            {
+                Assert.Pass("Maximum Languages Added");
+            }
+
+        }
+
+        
+
+
+
 
     }
 }

@@ -50,11 +50,15 @@
             },
             "NUnit": {
               "target": "Package",
-              "version": "[3.14.0, )"
+              "version": "[4.0.0, )"
             },
             "NUnit3TestAdapter": {
               "target": "Package",
               "version": "[4.5.0, )"
+            },
+            "Selenium.Support": {
+              "target": "Package",
+              "version": "[4.15.0, )"
             },
             "Selenium.WebDriver": {
               "target": "Package",
@@ -93,7 +97,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.404\\RuntimeIdentifierGraph.json"
         }
       }
     }
