@@ -130,7 +130,7 @@ this.FeatureBackground();
             argumentsOfScenario.Add("NewSkill", newSkill);
             argumentsOfScenario.Add("NewSkillLevel", newSkillLevel);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("2. Edit an existing Skill Record", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 22
+#line 20
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -143,13 +143,13 @@ this.ScenarioInitialize(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line hidden
-#line 23
+#line 21
  testRunner.When(string.Format("User added a new skill record {0} {1}", skillName, skillLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 24
+#line 22
  testRunner.Then(string.Format("User edits an existing skill record {0} {1}", newSkill, newSkillLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 25
+#line 23
  testRunner.Then(string.Format("Skill record should be updated successfully {0}", newSkill), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -166,7 +166,7 @@ this.FeatureBackground();
             argumentsOfScenario.Add("SkillName", skillName);
             argumentsOfScenario.Add("SkillLevel", skillLevel);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("3. Delete an existing Skill Record", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 32
+#line 30
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -179,13 +179,10 @@ this.ScenarioInitialize(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line hidden
+#line 32
+ testRunner.When("User deletes an existing skill record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
 #line 33
- testRunner.When(string.Format("User added a new skill record {0} {1}", skillName, skillLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 34
- testRunner.Then("User deletes an existing skill record", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 35
  testRunner.Then(string.Format("Skill record should be deleted successfully {0}", skillName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -206,7 +203,7 @@ this.FeatureBackground();
             argumentsOfScenario.Add("SkillName", skillName);
             argumentsOfScenario.Add("SkillLevel", skillLevel);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("4. Add a new Skill Record with invalid data", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 40
+#line 38
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -219,11 +216,47 @@ this.ScenarioInitialize(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line hidden
-#line 41
+#line 39
  testRunner.When(string.Format("User added a new skill record with invalid data {0} {1}", skillName, skillLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 42
- testRunner.Then(string.Format("Skill record not be created  {0} {1}", skillName, skillLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 40
+ testRunner.Then("Skill record should not be created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("5.Max Charcaters input")]
+        [NUnit.Framework.TestCaseAttribute("\'!@$%1542761\'", "\'Beginner\'", null)]
+        [NUnit.Framework.TestCaseAttribute("\'123asdfghjklqsssss1234asdfghwertysssssssssssswertyuiopasdfghjklzxcvbnmqwertyuio1" +
+            "234567890asdfghjkl12345678fghjzxcvbnmasdfghjkpasdfghjklzxcvbnmqwe1234567890qwert" +
+            "yu1111111111ssssssssssssssssssiopasdfghjklzxcvbn\'", "\'Expert\'", null)]
+        public void _5_MaxCharcatersInput(string skillName, string skillLevel, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("SkillName", skillName);
+            argumentsOfScenario.Add("SkillLevel", skillLevel);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("5.Max Charcaters input", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 50
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 4
+this.FeatureBackground();
+#line hidden
+#line 51
+ testRunner.When(string.Format("User added a new skill record {0} {1}", skillName, skillLevel), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 52
+ testRunner.Then(string.Format("Skill record should be added successfully {0}", skillName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -85,10 +85,6 @@ namespace Project_Mars.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("1. Add a new Language Record with valid data")]
         [NUnit.Framework.TestCaseAttribute("\'English\'", "\'Fluent\'", null)]
-        [NUnit.Framework.TestCaseAttribute("\'French\'", "\'Basic\'", null)]
-        [NUnit.Framework.TestCaseAttribute("\'123asdfghjklqsssss1234asdfghwertysssssssssssswertyuiopasdfghjklzxcvbnmqwertyuio1" +
-            "234567890asdfghjkl12345678fghjzxcvbnmasdfghjkpasdfghjklzxcvbnmqwe1234567890qwert" +
-            "yu1111111111ssssssssssssssssssiopasdfghjklzxcvbn\'", "\'Basic\'", null)]
         public void _1_AddANewLanguageRecordWithValidData(string languageName, string languageLevel, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;
@@ -228,9 +224,10 @@ this.FeatureBackground();
         [NUnit.Framework.DescriptionAttribute("5. Check for Maximum Added languages")]
         [NUnit.Framework.TestCaseAttribute("\'English\'", "\'Fluent\'", null)]
         [NUnit.Framework.TestCaseAttribute("\'Hindi\'", "\'Native/Bilingual\'", null)]
-        [NUnit.Framework.TestCaseAttribute("\'Spanish\'", "\'Conversational\'", null)]
+        [NUnit.Framework.TestCaseAttribute("\'123asdfghjklqsssss1234asdfghwertysssssssssssswertyuiopasdfghjklzxcvbnmqwertyuio1" +
+            "234567890asdfghjkl12345678fghjzxcvbnmasdfghjkpasdfghjklzxcvbnmqwe1234567890qwert" +
+            "yu1111111111ssssssssssssssssssiopasdfghjklzxcvbn\'", "\'Basic\'", null)]
         [NUnit.Framework.TestCaseAttribute("\'Tamil\'", "\'Basic\'", null)]
-        [NUnit.Framework.TestCaseAttribute("\'Gujarati\'", "\'Fluent\'", null)]
         public void _5_CheckForMaximumAddedLanguages(string languageName, string languageLevel, string[] exampleTags)
         {
             string[] tagsOfScenario = exampleTags;

@@ -1,3 +1,4 @@
+using Microsoft.VisualBasic;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using Project_Mars.Pages;
@@ -26,6 +27,7 @@ namespace Project_Mars.StepDefinitions
         public void GivenUserNavigatesToSkillTab()
         {
             HomePageobj.SelectSkillTab();
+            
         }
 
 
@@ -40,7 +42,7 @@ namespace Project_Mars.StepDefinitions
         public void ThenSkillRecordShouldBeAddedSuccessfully(string SkillName)
         {
             string newSkill = SkillTabobj.AddedSkillRecord();
-            Assert.That(SkillName == newSkill, "Skill Record has not been created successfully");
+            Assert.That(newSkill == SkillName , "Skill Record has not been created successfully");
         }
 
         [Then(@"User edits an existing skill record '([^']*)' '([^']*)'")]
@@ -56,8 +58,8 @@ namespace Project_Mars.StepDefinitions
             Assert.That(NewSkill == Skill, "Skill Record has not been updated successfully");
         }
 
-        [Then(@"User deletes an existing skill record")]
-        public void ThenUserDeletesAnExistingSkillRecord()
+        [When(@"User deletes an existing skill record")]
+        public void WhenUserDeletesAnExistingSkillRecord()
         {
             SkillTabobj.DeleteSkillRecord();
         }
@@ -65,8 +67,11 @@ namespace Project_Mars.StepDefinitions
         [Then(@"Skill record should be deleted successfully '([^']*)'")]
         public void ThenSkillRecordShouldBeDeletedSuccessfully(string SkillName)
         {
-            string deletedSkillText = SkillTabobj.SkillPopUpMsg();
-            Assert.That(deletedSkillText == SkillName + "has been deleted from your skills", "Skill record has not been deleted");
+            string messageText = SkillTabobj.SkillPopUpMsg();
+            string box = SkillName + "has been deleted";
+             Assert.That(messageText == box, "Skill has not deleted");
+
+            
         }
 
         [When(@"User added a new skill record with invalid data '([^']*)' '([^']*)'")]
@@ -75,12 +80,13 @@ namespace Project_Mars.StepDefinitions
             SkillTabobj.CreateSkillRecord(SkillName, SkillLevel);
         }
 
-        [Then(@"Skill record not be created  '([^']*)' '([^']*)'")]
-        public void ThenSkillRecordNotBeCreated(string SkillName, string SkillLevel)
+        [Then(@"Skill record should not be created")]
+        public void ThenSkillRecordShouldNotBeCreated()
         {
             string InvalidData = SkillTabobj.SkillPopUpMsg();
             Assert.That(InvalidData == "Please enter skill and experience level", "invalid data");
         }
+
 
     }
 }

@@ -28,8 +28,8 @@ Scenario Outline: 2. Edit an existing Skill Record
 	
 	
 Scenario Outline: 3. Delete an existing Skill Record
-	When User added a new skill record <SkillName> <SkillLevel>
-	Then User deletes an existing skill record  
+	
+	When User deletes an existing skill record  
 	Then Skill record should be deleted successfully <SkillName> 
  Examples:   
 	| SkillName           | SkillLevel         |
@@ -37,7 +37,7 @@ Scenario Outline: 3. Delete an existing Skill Record
 
 Scenario Outline: 4. Add a new Skill Record with invalid data
 	When User added a new skill record with invalid data <SkillName> <SkillLevel>
-	Then Skill record not be created  <SkillName> <SkillLevel>
+	Then Skill record should not be created 
 
   Examples:   
 	| SkillName                | SkillLevel         |

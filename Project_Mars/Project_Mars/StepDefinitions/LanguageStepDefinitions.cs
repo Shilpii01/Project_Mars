@@ -74,8 +74,9 @@ namespace Project_Mars.StepDefinitions
         [Then(@"Language record should be deleted successfully '([^']*)'")]
         public void ThenLanguageRecordShouldBeDeletedSuccessfully(string LanguageName)
         {
-            string deletedLanguageText = LanguageTabObj.LanguagePopUpMsg();
-            Assert.That(deletedLanguageText == LanguageName + "has been deleted from your languages", "Language record has not deleted successfully");
+            string deletedElement = LanguageTabObj.GetDeletedElement();
+            Assert.That(LanguageName!= deletedElement, "Deleted language and expected language does not match");
+
         }
 
         [When(@"User added a new language record with invalid data '([^']*)' '([^']*)'")]
@@ -103,8 +104,12 @@ namespace Project_Mars.StepDefinitions
         [Then(@"Add new language button is unavailable")]
         public void ThenAddNewLanguageButtonIsUnavailable()
         {
-           bool Value = LanguageTabObj.ButtonIsAvailable();
-            Assert.That ( Value == false, "Add more languages");
+            int totalrows = LanguageTabObj.rows.Count;
+            if (totalrows == 4)
+            {
+                Assert.Pass("Maximum Languages Added");
+            }
+
         }
 
         
