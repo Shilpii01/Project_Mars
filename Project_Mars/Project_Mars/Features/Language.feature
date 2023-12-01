@@ -14,8 +14,8 @@ Scenario Outline: 1. Add a new Language Record with valid data
   Examples:   
 	| LanguageName | LanguageLevel      |
 	| 'English'    | 'Fluent'           |
-	#| 'French'     | 'Basic'            |
-	#|'123asdfghjklqsssss1234asdfghwertysssssssssssswertyuiopasdfghjklzxcvbnmqwertyuio1234567890asdfghjkl12345678fghjzxcvbnmasdfghjkpasdfghjklzxcvbnmqwe1234567890qwertyu1111111111ssssssssssssssssssiopasdfghjklzxcvbn' | 'Basic'            |
+	
+	
 
 	
 	
@@ -31,8 +31,7 @@ Scenario Outline: 2. Edit an existing Language Record
 	
 	
 Scenario Outline: 3. Delete an existing Language Record
-	#When User added a new language record <LanguageName> <LanguageLevel>
-	Then User deletes an existing language record 
+	When User deletes an existing language record 
 	Then Language record should be deleted successfully <LanguageName> 
  Examples:   
 	| LanguageName | LanguageLevel       | 
@@ -50,16 +49,16 @@ Scenario Outline: 4. Add a new Language Record with invalid data
 	
 	
 Scenario Outline: 5. Check for Maximum Added languages
-	When User is trying to add more than four language records <LanguageName> <LanguageLevel>
+	When User can add max four language records <LanguageName> <LanguageLevel>
 	Then Add new language button is unavailable 
 
   Examples:   
 	| LanguageName | LanguageLevel      |
 	| 'English'    | 'Fluent'           |
 	| 'Hindi'      | 'Native/Bilingual' |
-	| 'Spanish'    | 'Conversational'   |
+	|'123asdfghjklqsssss1234asdfghwertysssssssssssswertyuiopasdfghjklzxcvbnmqwertyuio1234567890asdfghjkl12345678fghjzxcvbnmasdfghjkpasdfghjklzxcvbnmqwe1234567890qwertyu1111111111ssssssssssssssssssiopasdfghjklzxcvbn' | 'Basic'            |
 	| 'Tamil'      | 'Basic'            |
-	| 'Gujarati'   | 'Fluent'           |
+	
 
  
 	

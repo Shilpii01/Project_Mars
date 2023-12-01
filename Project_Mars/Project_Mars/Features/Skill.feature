@@ -14,10 +14,8 @@ Scenario Outline: 1. Add a new Skill Record with valid data
   Examples:   
 	| SkillName      | SkillLevel         |
 	| 'Java'         | 'Beginner'         |
-	#| 'Python'       | 'Intermediate'     |
-	#| 'C#'           | 'Expert'           |
-	#|'Cybersecurity' | 'Beginner'         |
-	#|'123asdfghjklqsssss1234asdfghwertysssssssssssswertyuiopasdfghjklzxcvbnmqwertyuio1234567890asdfghjkl12345678fghjzxcvbnmasdfghjkpasdfghjklzxcvbnmqwe1234567890qwertyu1111111111ssssssssssssssssssiopasdfghjklzxcvbn' | 'Expert'            |
+	
+	
 
 Scenario Outline: 2. Edit an existing Skill Record
 	When User added a new skill record <SkillName> <SkillLevel>
@@ -35,7 +33,7 @@ Scenario Outline: 3. Delete an existing Skill Record
 	Then Skill record should be deleted successfully <SkillName> 
  Examples:   
 	| SkillName           | SkillLevel         |
-	| 'Oracle'  | 'Intermediate'  |
+	| 'Oracle'            | 'Intermediate'  |
 
 Scenario Outline: 4. Add a new Skill Record with invalid data
 	When User added a new skill record with invalid data <SkillName> <SkillLevel>
@@ -48,4 +46,12 @@ Scenario Outline: 4. Add a new Skill Record with invalid data
 	| ''                       | 'Expert'           |
 	| '*******'                | ''                 |
 	| ''                       | 'Intermediate'     |
-	
+
+Scenario Outline: 5.Max Charcaters input 
+	When User added a new skill record <SkillName> <SkillLevel>
+	Then Skill record should be added successfully <SkillName>
+
+	Examples:
+	| SkillName                                                                                                                                                                                                          | SkillLevel |
+	|     '!@$%1542761'                                                                                                                                                                                                  | 'Beginner' |
+	| '123asdfghjklqsssss1234asdfghwertysssssssssssswertyuiopasdfghjklzxcvbnmqwertyuio1234567890asdfghjkl12345678fghjzxcvbnmasdfghjkpasdfghjklzxcvbnmqwe1234567890qwertyu1111111111ssssssssssssssssssiopasdfghjklzxcvbn' | 'Expert'   |

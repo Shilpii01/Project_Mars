@@ -65,8 +65,8 @@ namespace Project_Mars.StepDefinitions
             Assert.That(NewName == newLanguage, "Language has not been edited");
         }
 
-        [Then(@"User deletes an existing language record")]
-        public void ThenUserDeletesAnExistingLanguageRecord()
+        [When(@"User deletes an existing language record")]
+        public void WhenUserDeletesAnExistingLanguageRecord()
         {
             LanguageTabObj.DeleteLanguageRecord();
         }
@@ -92,12 +92,12 @@ namespace Project_Mars.StepDefinitions
         }
 
 
-
-        [When(@"User is trying to add more than four language records '([^']*)' '([^']*)'")]
-        public void WhenUserIsTryingToAddMoreThanFourLanguageRecords(string LanguageName, string LanguageLevel)
+        [When(@"User can add max four language records '([^']*)' '([^']*)'")]
+        public void WhenUserCanAddMaxFourLanguageRecords(string LanguageName, string LanguageLevel)
         {
             LanguageTabObj.CreateLanguageRecord(LanguageName, LanguageLevel);
         }
+
 
 
         [Then(@"Add new language button is unavailable")]
