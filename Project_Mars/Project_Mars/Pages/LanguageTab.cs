@@ -10,23 +10,25 @@ namespace Project_Mars.Pages
     {
        
 
-        public ReadOnlyCollection<IWebElement> rows => driver.FindElements(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table//tbody"));
+       public ReadOnlyCollection<IWebElement> rows => driver.FindElements(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table//tbody"));
 
-       public IWebElement AddNewButton => driver.FindElement(By.XPath("//div[@data-tab='first']//div[@class ='ui teal button ']"));
-        IWebElement addLanguageInputBox => driver.FindElement(By.Name("name"));
-        IWebElement selectLanguageLevelDropdown => driver.FindElement(By.Name("level"));
-        IWebElement addLanguageButton => driver.FindElement(By.XPath("//input [@type='button'][@value='Add']"));
-        IWebElement LanguageRecord => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[1]"));
-         public IWebElement PopUpMsg => driver.FindElement(By.XPath("//DIV[@class='ns-box-inner']"));
-        IWebElement editLanguageButton => driver.FindElement(By.XPath("//table[@class='ui fixed table']/tbody/tr/td[3]/span[1]/i"));
+       private IWebElement AddNewButton => driver.FindElement(By.XPath("//div[@data-tab='first']//div[@class ='ui teal button ']"));
+       private IWebElement addLanguageInputBox => driver.FindElement(By.Name("name"));
+        private IWebElement selectLanguageLevelDropdown => driver.FindElement(By.Name("level"));
+        private IWebElement addLanguageButton => driver.FindElement(By.XPath("//input [@type='button'][@value='Add']"));
+        private IWebElement LanguageRecord => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody[last()]/tr/td[1]"));
+        private IWebElement PopUpMsg => driver.FindElement(By.XPath("//DIV[@class='ns-box-inner']"));
+        private IWebElement editLanguageButton => driver.FindElement(By.XPath("//table[@class='ui fixed table']/tbody/tr/td[3]/span[1]/i"));
 
-        IWebElement updateButton => driver.FindElement(By.XPath("//input[@class='ui teal button'][@value='Update']"));
-        
-        IWebElement DeleteLanguageButton => driver.FindElement(By.XPath("//i[@class='remove icon']"));
+        private IWebElement deletedElement => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[1]"));
+        private IWebElement updateButton => driver.FindElement(By.XPath("//input[@class='ui teal button'][@value='Update']"));
+
+        private IWebElement DeleteLanguageButton => driver.FindElement(By.XPath("//i[@class='remove icon']"));
         
 
         public void ClearExistingLanguages() 
         {
+            Thread.Sleep(2000);
             int totalrows= rows.Count;
             Console.WriteLine(totalrows);
             for (int i = 0; i < totalrows ;i= i+1)
@@ -69,6 +71,7 @@ namespace Project_Mars.Pages
         public string AddedLanguageRecord()
         {
             driver.Navigate().Refresh();
+
             return LanguageRecord.Text;
         }
 
@@ -96,9 +99,16 @@ namespace Project_Mars.Pages
                               
         }
 
+        public string GetDeletedElement()
+        {
+            return deletedElement.Text;
+        }
+
         public string LanguagePopUpMsg()
         {
+            Thread.Sleep(2000);
             return PopUpMsg.Text;
+           
 
         }
         public Boolean ButtonIsAvailable() 

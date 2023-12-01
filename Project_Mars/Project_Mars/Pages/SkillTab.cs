@@ -8,8 +8,9 @@ namespace Project_Mars.Pages
 {
     public class SkillTab: CommonDriver
     {
-        private ReadOnlyCollection<IWebElement> skillrows => driver.FindElements(By.XPath("//div[@data-tab='second']/div/div[2]/div/table[@class='ui fixed table']/tbody"));
-        
+        public ReadOnlyCollection<IWebElement> skillrows => driver.FindElements(By.XPath("//div[@data-tab='second']/div/div[2]/div/table[@class='ui fixed table']/tbody"));
+
+        private  IWebElement SkillsTab => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[2]"));
         private  IWebElement AddNewButton => driver.FindElement(By.XPath("(//div[@class='ui teal button'])[1]"));
         private  IWebElement addSkillInputBox => driver.FindElement(By.Name("name"));
         private IWebElement selectSkillLevelDropdown => driver.FindElement(By.Name("level"));
@@ -18,18 +19,18 @@ namespace Project_Mars.Pages
         
         public IWebElement PopUpMsg => driver.FindElement(By.XPath("//DIV[@class='ns-box-inner']"));
       
-       private IWebElement editSkillButton => driver.FindElement(By.XPath("//table[@class='ui fixed table']/tbody/tr/td[3]/span[1]/i"));
+       private IWebElement editSkillButton => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[3]/span[1]/i"));
        
-       private IWebElement updateSkillButton => driver.FindElement(By.XPath("//input[@class='ui teal button'][@value='Update']"));
+       private IWebElement updateSkillButton => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td/div/span/input[1]"));
     
-       private IWebElement DeleteSkillButton => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[3]/span[2]/"));
+       private IWebElement DeleteSkillButton => driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[3]/div/div[2]/div/table/tbody/tr/td[3]/span[2]/i"));
 
         public void ClearExistingSkill()
         {
             
             Thread.Sleep(2000);
             int rows = skillrows.Count;
-            for (int i = 0; i < rows; i = i+1)
+            for (int i = 0; i < rows; i= i+1)
             {
                 DeleteSkillButton.Click();
                 Thread.Sleep(2000);
@@ -40,8 +41,9 @@ namespace Project_Mars.Pages
         public void CreateSkillRecord(string SkillName, string SkillLevel)
         {
             Thread.Sleep(3000);
-       
-            AddNewButton.Click();        
+            SkillsTab.Click();
+            AddNewButton.Click();
+            Thread.Sleep(1000);
             addSkillInputBox.Click();
             addSkillInputBox.Clear();
             addSkillInputBox.SendKeys(SkillName);
@@ -54,11 +56,13 @@ namespace Project_Mars.Pages
             // var selectElement = new SelectElement(selectSkilllevelDropdown);
                       
             addSkillButton.Click();
+            Thread.Sleep(2000);
         }
 
         public string AddedSkillRecord()
         {
             driver.Navigate().Refresh();
+            Thread.Sleep(3000);
             return SkillRecord.Text;
         }
 
@@ -75,6 +79,7 @@ namespace Project_Mars.Pages
             selectElement.SelectByValue(NewSkillLevel);
             // var selectElement = new SelectElement(selectSkilllevelDropdown);
             updateSkillButton.Click();
+            Thread.Sleep(2000);
         }
        
 
@@ -83,12 +88,15 @@ namespace Project_Mars.Pages
             driver.Navigate().Refresh();
             Thread.Sleep(2000);
                    
-                    DeleteSkillButton.Click();                  
+            DeleteSkillButton.Click(); 
+            Thread.Sleep(2000);
         }
 
         public string SkillPopUpMsg()
         {
+            Thread.Sleep(2000);
             return PopUpMsg.Text;
+            
 
         }
        

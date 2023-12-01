@@ -8,8 +8,8 @@ namespace Project_Mars.Pages
 {
     public class HomePage:CommonDriver
     {
-       IWebElement LanguageTab => driver.FindElement(By.XPath("//a[@data-tab='first']"));
-        IWebElement SkillTab => driver.FindElement(By.XPath("//a[@data-tab='second']"));
+       private IWebElement LanguageTab => driver.FindElement(By.XPath("//a[@data-tab='first']"));
+       private IWebElement SkillTab => driver.FindElement(By.XPath("//a[@data-tab='second']"));
 
         public void SelectLanguageTab()
         {
